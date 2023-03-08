@@ -1,19 +1,30 @@
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from .serializers import SkillSerializer
-from .models import Skill
-
+from .serializers import (
+    SkillSerializer,
+    ProjectSerializer,
+    AboutMeSerializer
+)
+from .models import (
+    Skill,
+    Project,
+    AboutMe,
+)
 from rest_framework import generics
-from .models import Project
-from .serializers import ProjectSerializer
 
 
 class SkillList(generics.ListAPIView):
     queryset = Skill.objects.all()
-    serializer_class = ProjectSerializer
+    serializer_class = SkillSerializer
 
 
 class ProjectList(generics.ListAPIView):
     
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+class AboutMeListAPIView(generics.ListAPIView):
+    queryset = AboutMe.objects.all()
+    serializer_class = AboutMeSerializer
+
+
+

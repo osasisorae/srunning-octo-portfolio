@@ -27,13 +27,13 @@ class SkillViewTestCase(TestCase):
             description='A programming language'
         )
 
-    # def test_skill_list_view(self):
-    #     url = reverse('skill-list')
-    #     response = self.client.get(url, format='json')
-    #     skills = Skill.objects.all()
-    #     serializer = SkillSerializer(skills, many=True)
-    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
-    #     self.assertEqual(response.data, serializer.data)
+    def test_skill_list_view(self):
+        url = reverse('skill-list')
+        response = self.client.get(url, format='json')
+        skills = Skill.objects.all()
+        serializer = SkillSerializer(skills, many=True)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, serializer.data)
 
 class SkillSerializerTestCase(TestCase):
 

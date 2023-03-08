@@ -21,3 +21,17 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+    
+class AboutMe(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    location = models.CharField(max_length=100)
+    occupation = models.CharField(max_length=100)
+    interests = models.TextField()
+    personality_traits = models.TextField()
+    education = models.CharField(max_length=100)
+    achievements = models.TextField()
+    personal_statement = models.TextField()
+    
+    def __str__(self):
+        return self.name
