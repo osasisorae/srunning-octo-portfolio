@@ -3,8 +3,17 @@ from rest_framework.decorators import api_view
 from .serializers import SkillSerializer
 from .models import Skill
 
-@api_view(['GET'])
-def skill_list(request):
-    skills = Skill.objects.all()
-    serializer = SkillSerializer(skills, many=True)
-    return Response(serializer.data)
+from rest_framework import generics
+from .models import Project
+from .serializers import ProjectSerializer
+
+
+class SkillList(generics.ListAPIView):
+    queryset = Skill.objects.all()
+    serializer_class = ProjectSerializer
+
+
+class ProjectList(generics.ListAPIView):
+    
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
