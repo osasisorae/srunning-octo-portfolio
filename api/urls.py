@@ -2,6 +2,7 @@ from django.urls import path
 from .views import (
     SkillList,
     ProjectList,
+    ProjectDetail,
     AboutMeListAPIView,
     NewsletterSubscriberView
 )
@@ -9,6 +10,7 @@ from .views import (
 urlpatterns = [
     path('skills/', SkillList.as_view(), name='skill-list'),
     path('projects/', ProjectList.as_view(), name='project-list'),
+    path('projects/<int:pk>/', ProjectDetail.as_view(), name='project-detail'),
     path('about-me/', AboutMeListAPIView.as_view(), name='about-list'),
     path('subscribe-newsletter/', NewsletterSubscriberView.as_view(), name='newsletter-subscriber',)
 ]

@@ -6,6 +6,9 @@ from ..serializers import ProjectSerializer
 from django.test import TestCase
 from django.urls import reverse, resolve
 from ..views import ProjectList
+from rest_framework.test import APIClient
+from django.utils.timezone import now
+
 
 class ProjectModelTest(APITestCase):
     def setUp(self):
@@ -60,3 +63,23 @@ class TestProjectUrl(TestCase):
     def test_project_list_url_resolves(self):
         url = reverse('project-list')
         self.assertEqual(resolve(url).func.view_class, ProjectList)
+        
+class ProjectDetailTest(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.project1 = Project.objects.create(title='Project 1', description='Description for Project 1', start_date="2020-04-04")
+        self.project2 = Project.objects.create(title='Project 2', description='Description for Project 2', start_date="2020-04-04")
+
+    def test_get_project_detail(self):
+        url = reverse('project-detail', kwargs={'pk': self.project1.pk})
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, ProjectSerializer(self.project1).data)
+
+    def test_get_invalid_project_detail(self):
+        url = reverse('project-detail', kwargs={'pk': 100})
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+

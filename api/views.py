@@ -26,6 +26,10 @@ class ProjectList(generics.ListAPIView):
     
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    
+class ProjectDetail(generics.RetrieveAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
 
 class AboutMeListAPIView(generics.ListAPIView):
     queryset = AboutMe.objects.all()
