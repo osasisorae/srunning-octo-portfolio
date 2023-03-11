@@ -3,6 +3,7 @@ from .models import (
     Skill, 
     Project,
     AboutMe,
+    NewsletterSubscriber
 )
 
 class SkillSerializer(serializers.ModelSerializer):
@@ -21,3 +22,9 @@ class AboutMeSerializer(serializers.ModelSerializer):
     class Meta:
         model = AboutMe
         fields = '__all__'
+
+
+class NewsletterSubscriberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NewsletterSubscriber
+        fields = ('email',)

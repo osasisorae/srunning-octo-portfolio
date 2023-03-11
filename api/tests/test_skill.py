@@ -55,3 +55,5 @@ class SkillURLsTestCase(TestCase):
     def test_skill_list_url_resolves_to_skill_list_view(self):
         url = reverse('skill-list')
         self.assertEqual(resolve(url).func.view_class, SkillList)
+
+
